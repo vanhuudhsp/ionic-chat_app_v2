@@ -47,9 +47,9 @@ angular.module('chatapp.services', [])
             return $firebaseAuth(FBRef);
         },
         olUsers: function () {
-            alert('hello');
-            var olUsersRef = new firebase.database().ref('/onlineUsers/');
             
+            var olUsersRef = new firebase.database().ref('/onlineUsers/');
+            alert('hello');
             return $firebaseArray(olUsersRef);
         },
         chatBase: function () {
