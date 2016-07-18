@@ -33,7 +33,7 @@ angular.module('chatapp.controllers', [])
                 authData = authData.google;
             }
             UserFactory.setUser(authData);
-            alert('Email : ', authData.email);
+            //alert('Email : ', authData.email);
             Loader.toggle('Redirecting..');
             $scope.onlineusers = FBFactory.olUsers();
             
