@@ -46,17 +46,19 @@ angular.module('chatapp.services', [])
             //alert('auth: ' + $firebaseAuth(FBRef));
             return $firebaseAuth(FBRef);
         },
-        olUsers: function() {
-            var olUsersRef = firebase.database().ref('/onlineUsers/');
+        olUsers: function () {
+            alert('hello');
+            var olUsersRef = new firebase.database().ref('/onlineUsers/');
+            
             return $firebaseArray(olUsersRef);
         },
         chatBase: function () {
             var chatRef = new firebase.database().ref('/chats/');
-            console.log($firebaseArray(chatRef));
+            //console.log($firebaseArray(chatRef));
             return $firebaseArray(chatRef);
         },
         chatRef: function (loggedInUser, OtherUser) {
-            var chatRef = firebase.database().ref('/chats/chat_' + Utils.getHash(OtherUser, loggedInUser));
+            var chatRef = new firebase.database().ref('/chats/chat_' + Utils.getHash(OtherUser, loggedInUser));
             return $firebaseArray(chatRef);
         }
     };
