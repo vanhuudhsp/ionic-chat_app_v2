@@ -52,6 +52,7 @@ angular.module('chatapp.services', [])
         },
         chatBase: function () {
             var chatRef = new firebase.database().ref('/chats/');
+            console.log($firebaseArray(chatRef));
             return $firebaseArray(chatRef);
         },
         chatRef: function (loggedInUser, OtherUser) {
