@@ -8,8 +8,5 @@
     "firebase": "*",
     "angularfire": "*",
     "lato": "*"
-  },
-  "resolutions": {
-    "firebase": "3.2.0"
   }
 }

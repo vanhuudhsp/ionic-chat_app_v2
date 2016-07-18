@@ -20,6 +20,16 @@
     <script src="lib/ng-cordova-oauth/dist/ng-cordova-oauth.js"></script>
     <script src="cordova.js"></script>
     <script src="lib/firebase/firebase.js"></script>
+    <script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAhVc-d6LQFPkSRHH1bEqC6NUuwIWTIZ80",
+    authDomain: "ionic-chat-app-1374.firebaseapp.com",
+    databaseURL: "https://ionic-chat-app-1374.firebaseio.com",
+    storageBucket: "ionic-chat-app-1374.appspot.com",
+  };
+  firebase.initializeApp(config);
+    </script>
     <script src="lib/angularfire/dist/angularfire.min.js"></script>
     <!-- your app's js -->
 
@@ -27,7 +37,7 @@
     <script src="js/controllers.js"></script>
     <script src="js/services.js"></script>
     <script src="js/directives.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADd5p37JxFYBe4WxWPz4LWPE_fS57pCBI&sensor=true"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADd5p37JxFYBe4WxWPz4LWPE_fS57pCBI"></script>
 </head>
 <body ng-app="IonicChatApp">
     <!--

@@ -50,7 +50,7 @@ angular.module('IonicChatApp', ['ionic', 'chatapp.controllers','chatapp.services
         resolve: {
             'currentAuth': ['FBFactory', 'Loader',function (FBFactory, Loader) {
                 Loader.show('Checking Auth..');
-                return FBFactory.auth().$waitForAuth();
+                return FBFactory.auth().$waitForSignIn();
             }]
         }
   })
@@ -75,7 +75,7 @@ angular.module('IonicChatApp', ['ionic', 'chatapp.controllers','chatapp.services
         },
         resolve: {
             'currentAuth': ['FBFactory', function(FBFactory) {
-                return FBFactory.auth().$requireAuth();
+                return FBFactory.auth().$requireSignIn();
             }]
         }
   })
@@ -91,7 +91,7 @@ angular.module('IonicChatApp', ['ionic', 'chatapp.controllers','chatapp.services
       },
       resolve: {
           'currentAuth': ['FBFactory', function (FBFactory) {
-              return FBFactory.auth().$requireAuth();
+              return FBFactory.auth().$requireSignIn();
           }]
       }
   })
@@ -106,7 +106,7 @@ angular.module('IonicChatApp', ['ionic', 'chatapp.controllers','chatapp.services
       },
       resolve: {
         'currentAuth': ['FBFactory', function(FBFactory) {
-            return FBFactory.auth().$requireAuth();
+            return FBFactory.auth().$requireSignIn();
         }]
       }
   })
@@ -120,7 +120,7 @@ angular.module('IonicChatApp', ['ionic', 'chatapp.controllers','chatapp.services
           resolve: {
               'currentAuth': ['FBFactory', 'Loader',function (FBFactory, Loader) {
                   Loader.show('Checking Auth..');
-                  return FBFactory.auth().$requireAuth();
+                  return FBFactory.auth().$requireSignIn();
               }]
           }
         }

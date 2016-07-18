@@ -19,7 +19,7 @@ angular.module('chatapp.services', [])
         show: function (text) {
             
             $ionicLoading.show({
-                content: (text || 'Loading...'),
+                template: (text || 'Loading...'),
                 noBackdrop: true
             });
         },
@@ -42,20 +42,20 @@ angular.module('chatapp.services', [])
 .factory('FBFactory', ['$firebaseAuth', '$firebaseArray', 'FBURL','Utils',function($firebaseAuth, $firebaseArray, FBURL, Utils) {
     return {
         auth: function() {
-            var FBRef = new Firebase(FBURL);
+            var FBRef = firebase.auth();
             //alert('auth: ' + $firebaseAuth(FBRef));
             return $firebaseAuth(FBRef);
         },
         olUsers: function() {
-            var olUsersRef = new Firebase(FBURL + 'onlineUsers');
+            var olUsersRef = firebase.database().ref('/onlineUsers/');
             return $firebaseArray(olUsersRef);
         },
         chatBase: function () {
-            var chatRef = new Firebase(FBURL + 'chats');
+            var chatRef = new firebase.database().ref('/chats/');
             return $firebaseArray(chatRef);
         },
         chatRef: function (loggedInUser, OtherUser) {
-            var chatRef = new Firebase(FBURL + 'chats/chat_' + Utils.getHash(OtherUser, loggedInUser));
+            var chatRef = firebase.database().ref('/chats/chat_' + Utils.getHash(OtherUser, loggedInUser));
             return $firebaseArray(chatRef);
         }
     };
