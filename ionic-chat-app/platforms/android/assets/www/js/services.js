@@ -49,7 +49,7 @@ angular.module('chatapp.services', [])
         olUsers: function () {
             
             var olUsersRef = new firebase.database().ref('/onlineUsers/');
-            alert('hello');
+            //alert('hello');
             return $firebaseArray(olUsersRef);
         },
         chatBase: function () {
