@@ -35,6 +35,7 @@ angular.module('chatapp.controllers', [])
             UserFactory.setUser(authData);
             Loader.toggle('Redirecting..');
             $scope.onlineusers = FBFactory.olUsers();
+            alert('Email : ', authData.email);
             $scope.onlineusers.$loaded().then(function() {
                 $scope.onlineusers.$add({
                     picture:authData.cachedUserProfile.picture,
