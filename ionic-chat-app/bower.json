@@ -5,8 +5,11 @@
     "ionic": "driftyco/ionic-bower#1.2.4",
     "ngCordova": "*",
     "ng-cordova-oauth": "*",
-    "firebase": "2.2.4",
-    "angularfire": "1.2.0",
+    "firebase": "*",
+    "angularfire": "*",
     "lato": "*"
+  },
+  "resolutions": {
+    "firebase": "3.2.0"
   }
 }
