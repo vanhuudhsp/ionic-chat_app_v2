@@ -36,16 +36,18 @@ angular.module('chatapp.controllers', [])
             //alert('Email : ', authData.email);
             Loader.toggle('Redirecting..');
             $scope.onlineusers = FBFactory.olUsers();
-            alert('Online users: ' + $scope.onlineusers);
+            //alert('Online users: ' + $scope.onlineusers);
             $scope.onlineusers.$loaded().then(function() {
+                console.log(authData);
                 $scope.onlineusers.$add({
-                    picture:authData.cachedUserProfile.picture,
+                    
+                    picture: authData.photoURL,
                     name: authData.displayName,
                     email: authData.email,
                     login: Date.now()
                 })
                 .then(function(ref) {
-                    UserFactory.setPresenceId(ref.key());
+                    UserFactory.setPresenceId(ref.key);
                     UserFactory.setOLUsers($scope.onlineusers);
                     $state.go('tab.dash');
                 });
@@ -55,6 +57,7 @@ angular.module('chatapp.controllers', [])
         
         if (currentAuth) {
             
+            //console.log(currentAuth);
             $scope.$broadcast('showChatInterface', currentAuth.google);
         }
         $scope.loginWithGoogle = function () {
@@ -71,15 +74,15 @@ angular.module('chatapp.controllers', [])
                 var credential = firebase.auth.GoogleAuthProvider.credential(result.id_token);
 
                 FBFactory.auth().$signInWithCredential(credential).then(function (authData) {
-                    alert('authdata: ' + authData.displayName);
-                    alert('authdata: ' + authData.email);
+                    //alert('Email: ' + authData.email);
+                    //alert('Picture: ' + authData.cachedUserProfile);
                     $scope.$broadcast('showChatInterface', authData);
                 }, function (error) {
-                    alert(error);
+                    //alert(error);
                     Loader.toggle(error);
                 });
             }, function (error) {
-                alert(error);
+                //alert(error);
                 Loader.toggle(error);
             });
         }
@@ -280,14 +283,19 @@ angular.module('chatapp.controllers', [])
 
 .controller('AccountCtrl', ['$scope', 'FBFactory', 'UserFactory','$state', function ($scope, FBFactory, UserFactory, $state) {
     $scope.logout = function () {
-        FBFactory.auth().$unauth();
+        //alert('canh bao');
+        //console.log(FBFactory.auth());
+        FBFactory.auth().$signOut();
         UserFactory.cleanUser();
         UserFactory.cleanOLUsers();
         // remove presence
         var onlineUsers = UserFactory.getOLUsers();
+        console.log(onlineUsers);
         if (onlineUsers && onlineUsers.$getRecord) {
+            alert('Vao day');
             var presenceId = UserFactory.getPresenceId();
-            var user = onlineUsers.$getRecord();
+            var user = onlineUsers.$getRecord(presenceId);
+            console.log(user);
             onlineUsers.$remove(user);
         }
         UserFactory.cleanPresenceId();
